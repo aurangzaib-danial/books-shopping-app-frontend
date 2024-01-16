@@ -1,17 +1,20 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { ShoppingCartIcon } from '@heroicons/react/24/solid'
+import { auth, signOut} from '@/auth';
 
 export const metadata: Metadata = {
   title: 'Books Shopping App',
   description: 'An online store for buying books',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const user = await auth();
+
   return (
     <html lang="en">
       <body>
@@ -24,9 +27,19 @@ export default function RootLayout({
                 </div>
                 <div>
                   <ul className="text-lg flex">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li><a href="#">Books</a></li>
-                    <li><a href="#">My Orders</a></li>
+                    <li><a href="/orders">My Orders</a></li>
+                    { user && <li>
+                      <form
+                        action={async () => {
+                          'use server';
+                          await signOut();
+                        }}
+                      >
+                        <button>Sign out</button>
+                      </form>
+                    </li> }
                   </ul>
                 </div>
               </div>

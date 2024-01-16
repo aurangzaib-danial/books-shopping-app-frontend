@@ -1,12 +1,8 @@
 import { Book } from './definitions';
-
-const developmentUrlPrefix = 'http://localhost:3000';
-const productionUrlPrefix = 'http://example.com';
+import { apiHost } from './utils';
 
 async function getData<T>(resource : string) : Promise<T> {
-  const prefix = process.env.NODE_ENV === 'development' ? developmentUrlPrefix : productionUrlPrefix;
-
-  const res = await fetch(prefix + resource, { cache: 'no-store'});
+  const res = await fetch(apiHost() + resource, { cache: 'no-store'});
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
