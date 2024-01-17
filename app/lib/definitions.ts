@@ -6,3 +6,13 @@ export interface Book {
   updated_at: string;
   price: number
 }
+
+export interface AuthParams {
+  email: any;
+  password: any;
+}
+
+export interface User {
+  id: number
+  email: string;
+}
