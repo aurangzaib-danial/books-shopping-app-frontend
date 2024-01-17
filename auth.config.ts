@@ -7,15 +7,19 @@ export const authConfig = {
   },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
-      const isLoggedIn = !!auth?.user;
+      const isSignedIn = !!auth?.user;
       const isOnOrdersPage = nextUrl.pathname.startsWith('/orders');
+      const isOnSignInPage = nextUrl.pathname.startsWith('/sign_in');
+      const isOnSignUpPage = nextUrl.pathname.startsWith('/sign_up');
 
       if (isOnOrdersPage) {
-        if (isLoggedIn) return true;
-        return false; // Redirect unauthenticated users to login page
-      } else if (isLoggedIn) {
+        return isSignedIn ? true : false;
+      }
+
+      if (isSignedIn && (isOnSignInPage || isOnSignUpPage)) {
         return Response.redirect(new URL('/orders', nextUrl));
       }
+
       return true;
     },
   },
