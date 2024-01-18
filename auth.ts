@@ -3,7 +3,7 @@
 import NextAuth from 'next-auth';
 import { authConfig } from './auth.config';
 import Credentials from 'next-auth/providers/credentials';
-import {authenticateWithApi} from '@/app/lib/utils';
+import {postData} from '@/app/lib/utils';
 
 export const { auth, signIn, signOut } = NextAuth({
   ...authConfig,
@@ -15,7 +15,7 @@ export const { auth, signIn, signOut } = NextAuth({
           password: credentials?.password
         };
 
-        const apiAuthRes = await authenticateWithApi(params);
+        const apiAuthRes = await postData('/sign_in', params);
         const res = await apiAuthRes.json();
 
         if (apiAuthRes.ok) {

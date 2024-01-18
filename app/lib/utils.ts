@@ -1,5 +1,3 @@
-import { AuthParams } from "./definitions";
-
 export function apiHost() {
   const development = 'http://localhost:3000';
   const production = 'http://example.com';
@@ -7,8 +5,8 @@ export function apiHost() {
   return process.env.NODE_ENV === 'development' ? development : production;
 }
 
-export async function authenticateWithApi(params : AuthParams) {
-  const url = apiHost() + '/sign_in';
+export async function postData(route : string, params : any) {
+  const url = apiHost() + route;
   const authReq = await fetch(url, {
     method: 'POST', 
     headers: {
