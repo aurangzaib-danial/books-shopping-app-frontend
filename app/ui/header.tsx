@@ -1,5 +1,6 @@
 import { auth, signOut} from '@/auth';
 import { ShoppingCartIcon } from '@heroicons/react/24/solid'
+import Link  from 'next/link';
 
 export default async function Header() {
   const user = await auth();
@@ -9,13 +10,13 @@ export default async function Header() {
       <nav className="container-fixed">
         <div className="flex justify-between">
           <div>
-            <h1 className="text-3xl"><a href="/">Books Shopping</a></h1>
+            <h1 className="text-3xl"><Link href="/">eBooks Shopping</Link></h1>
           </div>
           <div>
             <ul className="text-lg flex">
-              <li><a href="/">Home</a></li>
-              <li><a href="#">Books</a></li>
-              <li><a href="/orders">My Orders</a></li>
+              <li><Link href="/">Home</Link></li>
+              <li><Link href="#">Books</Link></li>
+              <li><Link href="/orders">Orders</Link></li>
               { user && <li>
                 <form
                   action={async () => {

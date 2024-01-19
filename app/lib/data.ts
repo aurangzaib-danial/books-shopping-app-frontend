@@ -13,6 +13,10 @@ async function getData<T>(resource : string) : Promise<T> {
 
 export async function fetchBooks() {
   const books = await getData<Book[]>('/books');
-
   return books;
+}
+
+export async function fetchBook(id : string) {
+  const book = await getData<Book>('/books/' + id);
+  return book;
 }

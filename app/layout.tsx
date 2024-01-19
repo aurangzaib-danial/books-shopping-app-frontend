@@ -3,8 +3,8 @@ import './globals.css'
 import Header from '@/app/ui/header';
 
 export const metadata: Metadata = {
-  title: 'Books Shopping App',
-  description: 'An online store for buying books',
+  title: 'eBooks Shopping',
+  description: 'An online store for buying eBooks',
 }
 
 export default async function RootLayout({
