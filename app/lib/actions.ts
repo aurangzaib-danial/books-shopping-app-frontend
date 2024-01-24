@@ -57,15 +57,16 @@ export async function addToCart(id : string) {
 }
 
 export async function getCart() {
-  if (!cookies().get('cart')) {
+  const cart = cookies().get('cart');
+  if (!cart || cart.value === '') {
     return [];
   } else {
-    return JSON.parse(cookies().get('cart')!.value);
+    return cart.value.split('.');
   }
 }
 
 function setCart(cart : string[]) {
-  cookies().set('cart', JSON.stringify(cart));
+  cookies().set('cart', cart.join('.'));
 }
 
 export async function removeFromCart(id : string | number) {

@@ -26,7 +26,8 @@ async function CartContents() {
     <>
       {books.map(book => (
         <article key={book.id} className="border-b border-gray-300 mb-4 pb-4">
-          <img src="https://placehold.co/70x70" className="inline" />
+          { /* eslint-disable-next-line @next/next/no-img-element */ }
+          <img src="https://placehold.co/70x70" className="inline" alt="Placeholder image" />
           <p className="mt-3">{ book.title }</p>
           <p className="mb-3">${ book.price }</p>
           <form action={removeFromCart.bind(null, book.id)}>
