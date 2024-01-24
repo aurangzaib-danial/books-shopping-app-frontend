@@ -1,4 +1,4 @@
-import { Book } from './definitions';
+import { Book, Genre } from './definitions';
 import { apiHost } from './utils';
 
 async function getData<T>(resource : string) : Promise<T> {
@@ -19,4 +19,14 @@ export async function fetchBooks() {
 export async function fetchBook(id : string) {
   const book = await getData<Book>('/books/' + id);
   return book;
+}
+
+export async function fetchGenres() {
+  const genres = await getData<Genre[]>('/genres');
+  return genres;
+}
+
+export async function fetchBooksByIds(ids : string[]) {
+  const books = await getData<Book[]>(`/books?ids=${ids.join()}`);
+  return books;
 }

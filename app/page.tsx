@@ -1,18 +1,23 @@
-import Image from "next/image";
-import {fetchBooks} from "./lib/data";
+import {fetchBooks, fetchGenres} from "./lib/data";
 import Link from 'next/link';
 
 export default async function Page() {
-  const books = await fetchBooks();
+  const [books, genres] = await Promise.all([
+    fetchBooks(),
+    fetchGenres()
+  ]);
 
   return (
     <main className="container-fixed" id="main-grid">
-      <section className="border border-gray-300 rounded-md text-lg p-4">
-        <h2 className="mb-4">Categories:</h2>
-        <ul className="list-disc pl-4 underline">
-          <li><a href="#">Fiction</a></li>
-          <li><a href="#">Sci-fi</a></li>
-        </ul>
+      <section>
+        <div className="border border-gray-300 rounded-md text-lg p-4">
+          <h2 className="mb-4">Categories:</h2>
+          <ul className="list-disc pl-4 underline">
+            {genres.map(genre => (
+              <li key={genre.id}><Link href={`/genres/${genre.id}`}>{ genre.name }</Link></li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       <section className="pt-4 pl-10 text-lg">

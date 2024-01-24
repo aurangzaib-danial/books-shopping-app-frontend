@@ -2,6 +2,9 @@
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 import { postData } from './utils';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers'
 
 export async function authenticate(
   _: string | undefined,
@@ -40,4 +43,40 @@ export async function signUp(prevState : SignUpFormState | undefined, formData :
   } else {
     return { errors: response.errors };
   }
+}
+
+export async function addToCart(id : string) {
+  let cart = await getCart();
+  if (!cart.includes(id)) {
+    cart.push(id);
+    setCart(cart);
+  }
+
+  revalidatePath('/cart');
+  redirect('/cart');
+}
+
+export async function getCart() {
+  if (!cookies().get('cart')) {
+    return [];
+  } else {
+    return JSON.parse(cookies().get('cart')!.value);
+  }
+}
+
+function setCart(cart : string[]) {
+  cookies().set('cart', JSON.stringify(cart));
+}
+
+export async function removeFromCart(id : string | number) {
+  id = id.toString();
+  const cart = await getCart();
+  if (cart.includes(id)) {
+    setCart(cart.filter((itemId : string) => itemId !== id));
+  }
+}
+
+export async function cartCount() {
+  const cart = await getCart();
+  return cart.length;
 }

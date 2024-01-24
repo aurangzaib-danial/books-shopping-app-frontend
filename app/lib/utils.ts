@@ -1,3 +1,5 @@
+import { Book } from "./definitions"
+
 export function apiHost() {
   const development = 'http://localhost:3000';
   const production = 'http://example.com';
@@ -16,4 +18,8 @@ export async function postData(route : string, params : any) {
     body: JSON.stringify(params)
   });
   return authReq;
+}
+
+export function calculateTotalBooksPrices(books: Book[]) {
+  return books.reduce((acc, book) => acc + book.price, 0);
 }

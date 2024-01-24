@@ -1,9 +1,11 @@
 import { auth, signOut} from '@/auth';
 import { ShoppingCartIcon } from '@heroicons/react/24/solid'
 import Link  from 'next/link';
+import { cartCount as cartCountFun } from '../lib/actions';
 
 export default async function Header() {
   const user = await auth();
+  const cartCount = await cartCountFun();
 
   return (
     <header>
@@ -13,7 +15,7 @@ export default async function Header() {
             <h1 className="text-3xl"><Link href="/">eBooks Shopping</Link></h1>
           </div>
           <div>
-            <ul className="text-lg flex">
+            <ul className="text-lg flex underline">
               <li><Link href="/">Home</Link></li>
               <li><Link href="#">Books</Link></li>
               <li><Link href="/orders">Orders</Link></li>
@@ -24,7 +26,7 @@ export default async function Header() {
                     await signOut();
                   }}
                 >
-                  <button>Sign out</button>
+                  <button className='underline'>Sign out</button>
                 </form>
               </li> }
             </ul>
@@ -38,10 +40,10 @@ export default async function Header() {
             className="input mr-8 w-60"
           />
 
-          <a href="#" className="text-lg">
+          <Link href="/cart">
             <ShoppingCartIcon className="h-6 w-6 inline pr-1 align-text-top"/>
-            Cart: 0
-          </a>
+            Cart: {cartCount}
+          </Link>
         </div>
       </nav>
     </header>

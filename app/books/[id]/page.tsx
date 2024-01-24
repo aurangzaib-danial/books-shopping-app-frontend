@@ -1,14 +1,16 @@
 import { notFound } from 'next/navigation';
 import { fetchBook } from '@/app/lib/data';
+import { addToCart } from '@/app/lib/actions';
 
 export default async function Page({ params }: { params: {id: string}}) {
   const id = params.id;
-
   const book = await fetchBook(id);
 
   if (!book) {
     notFound();
   }
+
+  const addToCartWithId = addToCart.bind(null, id);
 
   return (
     <main className="container-fixed mt-4 gap-7" id="book-grid">
@@ -33,7 +35,9 @@ export default async function Page({ params }: { params: {id: string}}) {
           <li>mobi for Kindle readers</li>
         </ul>
         <p className="mb-4">Get all eBook formats here for <strong>${book.price}</strong> (USD)</p>
-        <button className="primary-button">Add to cart</button>
+        <form action={addToCartWithId}>
+          <button className="primary-button">Add to cart</button>
+        </form>
       </div>
     </main>
   );
