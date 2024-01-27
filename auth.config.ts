@@ -11,8 +11,14 @@ export const authConfig = {
       const isOnOrdersPage = nextUrl.pathname.startsWith('/orders');
       const isOnSignInPage = nextUrl.pathname.startsWith('/sign_in');
       const isOnSignUpPage = nextUrl.pathname.startsWith('/sign_up');
+      const isOnCheckoutPage = nextUrl.pathname.startsWith('/checkout');
+      const callbackUrl = nextUrl.searchParams.get('callbackUrl');
 
-      if (isOnOrdersPage) {
+      if (callbackUrl && isSignedIn) {
+        return Response.redirect(new URL(callbackUrl, nextUrl));
+      }
+
+      if (isOnOrdersPage || isOnCheckoutPage) {
         return isSignedIn ? true : false;
       }
 

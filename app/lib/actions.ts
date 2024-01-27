@@ -2,8 +2,6 @@
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 import { postData } from './utils';
-import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers'
 
 export async function authenticate(
@@ -51,9 +49,6 @@ export async function addToCart(id : string) {
     cart.push(id);
     setCart(cart);
   }
-
-  revalidatePath('/cart');
-  redirect('/cart');
 }
 
 export async function getCart() {

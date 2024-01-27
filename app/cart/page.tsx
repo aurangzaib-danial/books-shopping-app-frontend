@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getCart, removeFromCart } from "../lib/actions";
 import { fetchBooksByIds } from "../lib/data";
 import { calculateTotalBooksPrices } from "../lib/utils";
@@ -36,8 +37,8 @@ async function CartContents() {
         </article>
       ))}
 
-      <p className="mb-2">Total: ${calculateTotalBooksPrices(books)}</p>
-      <button className="checkout-button">Check out</button>
+      <p className="mb-4">Total: ${calculateTotalBooksPrices(books)}</p>
+      <Link href="/checkout" className="checkout-button">Checkout</Link>
     </>
   );
 }
