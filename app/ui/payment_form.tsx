@@ -1,11 +1,16 @@
 'use client';
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useRef } from "react";
+
 
 export default function PaymentForm() {
   const [expiry, setExpiry] = useState("");
+  const { push, refresh } = useRouter();
+  const button = useRef<HTMLButtonElement>(null);
 
-  function onSubmit(e : React.SyntheticEvent) {
+  async function onSubmit(e : React.SyntheticEvent) {
     e.preventDefault();
     
     // Check if the expiry date is in the past
@@ -13,13 +18,20 @@ export default function PaymentForm() {
     const [expiryMonth, expiryYear] = expiry.split('/').map(Number);
     const expirationDate = new Date();
     expirationDate.setFullYear(2000 + expiryYear, expiryMonth, 1); 
-    console.log(expiryMonth, expiryYear);
 
     if (expirationDate < today) {
       alert('Error: Expiry date is in the past.');
       return;
     }
-    
+
+    button.current!.disabled = true;
+
+    await fetch('/orders/create', {
+      method: 'post'
+    });
+
+    push('/orders?status=success');
+    refresh(); 
   }
 
   return (
@@ -36,7 +48,7 @@ export default function PaymentForm() {
         <label htmlFor="card-cvv">CVV</label>
         <input type="password" name="card-cvv" id="card-cvv" className="input w-24" maxLength={3} pattern="[0-9]{3}" title="Please enter a 3-digit CVV number" required autoComplete="cc-csc" />
       </div>
-      <button className="primary-button">Pay</button>
+      <button className="primary-button" ref={button}>Pay</button>
     </form>
   );
 }

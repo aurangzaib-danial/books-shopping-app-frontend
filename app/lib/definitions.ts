@@ -14,3 +14,11 @@ export interface Genre {
   created_at: string;
   updated_at: string;
 }
+
+export interface Order {
+  id: number;
+  total: number;
+  created_at: string;
+  updated_at: string;
+  books: Book[];
+}

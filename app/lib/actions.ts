@@ -47,7 +47,7 @@ export async function addToCart(id : string) {
   let cart = await getCart();
   if (!cart.includes(id)) {
     cart.push(id);
-    setCart(cart);
+    await setCart(cart);
   }
 }
 
@@ -60,7 +60,7 @@ export async function getCart() {
   }
 }
 
-function setCart(cart : string[]) {
+export async function setCart(cart : string[]) {
   cookies().set('cart', cart.join('.'));
 }
 
@@ -68,10 +68,9 @@ export async function removeFromCart(id : string | number) {
   id = id.toString();
   const cart = await getCart();
   if (cart.includes(id)) {
-    setCart(cart.filter((itemId : string) => itemId !== id));
+    await setCart(cart.filter((itemId : string) => itemId !== id));
   }
 }
-
 export async function cartCount() {
   const cart = await getCart();
   return cart.length;

@@ -7,8 +7,6 @@ import { redirect } from 'next/navigation';
 export default async function Page() {
   const cart = await getCart();
 
-  console.log(cart.length);
-
   if (cart.length === 0) {
     redirect("/");
   } 

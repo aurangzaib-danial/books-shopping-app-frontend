@@ -1,5 +1,5 @@
-import { Book, Genre } from './definitions';
-import { apiHost } from './utils';
+import { Book, Genre, Order } from './definitions';
+import { apiHost, generateToken } from './utils';
 
 async function getData<T>(resource : string) : Promise<T> {
   const res = await fetch(apiHost() + resource, { cache: 'no-store'});
@@ -29,4 +29,10 @@ export async function fetchGenres() {
 export async function fetchBooksByIds(ids : string[]) {
   const books = await getData<Book[]>(`/books?ids=${ids.join()}`);
   return books;
+}
+
+export async function fetchOrders() {
+  const token = await generateToken();
+  const orders = await getData<Order[]>(`/orders?token=${token}`);
+  return orders;
 }
