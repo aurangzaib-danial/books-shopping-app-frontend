@@ -41,3 +41,8 @@ export async function fetchFilteredBooks(q : string) {
   const books = await getData<Book[]>(`/search?q=${q}`);
   return books;
 }
+
+export async function fetchGenre(id : string) {
+  const genre = await getData<Genre>(`/genres/${id}`);
+  return genre;
+}
