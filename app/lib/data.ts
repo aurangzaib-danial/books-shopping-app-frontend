@@ -11,8 +11,8 @@ async function getData<T>(resource : string) : Promise<T> {
   return res.json();
 }
 
-export async function fetchBooks() {
-  const books = await getData<Book[]>('/books');
+export async function fetchLatestBooks() {
+  const books = await getData<Book[]>('/books?latest=1');
   return books;
 }
 
@@ -35,4 +35,9 @@ export async function fetchOrders() {
   const token = await generateToken();
   const orders = await getData<Order[]>(`/orders?token=${token}`);
   return orders;
+}
+
+export async function fetchFilteredBooks(q : string) {
+  const books = await getData<Book[]>(`/search?q=${q}`);
+  return books;
 }

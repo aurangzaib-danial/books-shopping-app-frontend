@@ -1,9 +1,9 @@
-import {fetchBooks, fetchGenres} from "./lib/data";
+import {fetchLatestBooks, fetchGenres} from "./lib/data";
 import Link from 'next/link';
 
 export default async function Page() {
   const [books, genres] = await Promise.all([
-    fetchBooks(),
+    fetchLatestBooks(),
     fetchGenres()
   ]);
 

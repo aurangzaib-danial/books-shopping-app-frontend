@@ -2,6 +2,7 @@ import { auth, signOut} from '@/auth';
 import { ShoppingCartIcon } from '@heroicons/react/24/solid'
 import Link  from 'next/link';
 import { cartCount as cartCountFun } from '../lib/actions';
+import SearchForm from './search_form';
 
 export default async function Header() {
   const user = await auth();
@@ -34,12 +35,7 @@ export default async function Header() {
         </div>
 
         <div className="mt-3 flex justify-end">
-          <input 
-            type="search" 
-            placeholder="Search titles..." 
-            className="input mr-8 w-60"
-          />
-
+          <SearchForm />
           <Link href="/cart">
             <ShoppingCartIcon className="h-6 w-6 inline pr-1 align-text-top"/>
             Cart: {cartCount}
