@@ -18,7 +18,7 @@ export default async function Header() {
           <div>
             <ul className="text-lg flex underline">
               <li><Link href="/">Home</Link></li>
-              <li><Link href="#">Books</Link></li>
+              <li><Link href="/books">Books</Link></li>
               <li><Link href="/orders">Orders</Link></li>
               { user && <li>
                 <form

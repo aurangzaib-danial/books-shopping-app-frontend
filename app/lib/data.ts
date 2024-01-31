@@ -46,3 +46,8 @@ export async function fetchGenre(id : string) {
   const genre = await getData<Genre>(`/genres/${id}`);
   return genre;
 }
+
+export async function fetchBooks() {
+  const books = await getData<Book[]>('/books');
+  return books;
+}
