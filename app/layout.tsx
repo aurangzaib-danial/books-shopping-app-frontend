@@ -16,9 +16,12 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="py-6">
+        <div className="py-6 wrapper">
           <Header />
           {children}
+          <footer className='text-center mt-5'>
+            <p className='text-gray-500'>Personal portfolio project by <a href='https://aurangzaib-danial.github.io/' className='underline'>Aurangzaib Khan</a></p>
+          </footer>
         </div>
       </body>
     </html>
