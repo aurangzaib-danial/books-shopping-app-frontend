@@ -1,8 +1,9 @@
-import { auth, signOut} from '@/auth';
+import { auth } from '@/auth';
 import { ShoppingCartIcon } from '@heroicons/react/24/solid'
 import Link  from 'next/link';
 import { cartCount as cartCountFun } from '../lib/actions';
 import SearchForm from './search_form';
+import Menu from './menu';
 
 export default async function Header() {
   const user = await auth();
@@ -11,30 +12,9 @@ export default async function Header() {
   return (
     <header>
       <nav className="container-fixed">
-        <div className="flex justify-between">
-          <div>
-            <h1 className="text-3xl"><Link href="/">eBooks Shopping</Link></h1>
-          </div>
-          <div>
-            <ul className="text-lg flex underline">
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/books">Books</Link></li>
-              <li><Link href="/orders">Orders</Link></li>
-              { user && <li>
-                <form
-                  action={async () => {
-                    'use server';
-                    await signOut();
-                  }}
-                >
-                  <button className='underline'>Sign out</button>
-                </form>
-              </li> }
-            </ul>
-          </div>
-        </div>
+        <Menu user={user} />
 
-        <div className="mt-3 flex justify-end">
+        <div className="mt-6 sm:mt-3 flex justify-end">
           <SearchForm />
           <Link href="/cart">
             <ShoppingCartIcon className="h-6 w-6 inline pr-1 align-text-top"/>

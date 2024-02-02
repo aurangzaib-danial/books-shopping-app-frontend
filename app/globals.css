@@ -13,7 +13,7 @@ html, body {
 }
 
 nav ul li {
-  padding: 0 1rem;
+  @apply py-2 sm:px-4 sm:py-0;
 }
 
 .container-fixed {

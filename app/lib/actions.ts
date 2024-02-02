@@ -1,8 +1,9 @@
 'use server';
-import { signIn } from '@/auth';
+import { signIn, signOut } from '@/auth';
 import { AuthError } from 'next-auth';
 import { postData } from './utils';
-import { cookies } from 'next/headers'
+import { cookies } from 'next/headers';
+
 
 export async function authenticate(
   _: string | undefined,
@@ -74,4 +75,8 @@ export async function removeFromCart(id : string | number) {
 export async function cartCount() {
   const cart = await getCart();
   return cart.length;
+}
+
+export async function signOutAction() {
+  await signOut();
 }
