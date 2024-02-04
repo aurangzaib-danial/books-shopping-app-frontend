@@ -13,10 +13,11 @@ export default async function Page({ params }: { params: {id: string}}) {
   return (
     <main className="container-fixed mt-4 gap-7" id="book-grid">
       { /* eslint-disable-next-line @next/next/no-img-element */ }
-      <div><img src="https://placehold.co/250x300" alt="Placeholder image" className="rounded-md" />
+      <div className='flex justify-center md:items-start'>
+        <img src="https://placehold.co/250x300" alt="Placeholder image" className="rounded-md" />
       </div>
 
-      <div className="py-2 pr-2 text-lg border-r border-gray-300 ">
+      <div className="py-2 pr-2 text-lg md:border-r md:border-gray-300 ">
         <p className="mb-2 font-medium">{book.title}</p>
         <p className="mb-2 italic">Author: {book.author}</p>
         <p>

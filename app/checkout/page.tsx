@@ -14,7 +14,7 @@ export default async function Page() {
   const books = await fetchBooksByIds(cart);
 
   return (
-    <main className="mt-5 mx-auto max-w-64">
+    <main className="mt-5 mx-auto w-full max-w-64">
       <div className="text-center mb-4">
         <h2 className="font-semibold text-xl">Checkout</h2>
         <p className="mt-2">Total: ${calculateTotalBooksPrices(books)}</p>
