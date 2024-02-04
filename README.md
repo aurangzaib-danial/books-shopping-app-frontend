@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a e-book shopping app that I made to practice my NextJS, React, TypeScript and TailwindCSS skills. Entire front-end is handled by NextJS while api services are provided by a Ruby on Rails server.
 
-## Getting Started
+## Video Walk-through
+...TODO
 
-First, run the development server:
+## Development Setup
+Firstly, setup an AuthJS secret for encrypting JSON tokens. This token will be also used by the api server for authenticating requests by the front-end. Add secret by creating a file named `.env.local` in the root of this repo and add secret in following format:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+AUTH_SECRET=your_secret
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You can generate a secret by running following command in your terminal.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+openssl rand -base64 32
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Install node packages
 
-## Learn More
+```
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+Now before you start the front-end server, it is important to start the api server first. For starting the api server, follow instructions on this [link](https://github.com/aurangzaib-danial/books-shopping-app-api).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Once api has been setup, start the NextJS server by using followign command:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+npm run dev
+```
 
-## Deploy on Vercel
+Browse the app using localhost:3001. The default port of 3000 used by NextJS has been changed to 3001 as 3000 is used by Rails api. 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## License
+This project is released under the MIT License.
