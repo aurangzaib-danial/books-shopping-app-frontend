@@ -1,4 +1,4 @@
-This is a e-book shopping app that I made to practice my NextJS, React, TypeScript and TailwindCSS skills. Entire front-end is handled by NextJS while api services are provided by a Ruby on Rails server.
+This is an e-books shopping app that I made to practice my NextJS, React, TypeScript and TailwindCSS skills. Entire front-end is handled by NextJS while api services are provided by a Ruby on Rails server.
 
 ## Development Setup
 Firstly, setup an AuthJS secret for encrypting JSON tokens. This token will be also used by the api server for authenticating requests by the front-end. Add secret by creating a file named `.env.local` in the root of this repo and add secret in following format:
