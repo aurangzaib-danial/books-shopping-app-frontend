@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Header from '@/app/ui/header';
+import NextTopLoader from 'nextjs-toploader';
 
 export const metadata: Metadata = {
   title: 'eBooks Shopping',
@@ -17,6 +18,7 @@ export default async function RootLayout({
     <html lang="en">
       <body>
         <div className="py-6 wrapper">
+          <NextTopLoader />
           <Header />
           {children}
           <footer className='text-center mt-5'>
