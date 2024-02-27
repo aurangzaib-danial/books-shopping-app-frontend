@@ -21,7 +21,7 @@ npm install
 
 Now before you start the front-end server, it is important to start the api server first. For starting the api server, follow instructions on this [link](https://github.com/aurangzaib-danial/books-shopping-app-api).
 
-Once api has been setup, start the NextJS server by using followign command:
+Once api has been setup, start the NextJS server by using following command:
 
 ```
 npm run dev
